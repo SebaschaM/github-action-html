@@ -20,7 +20,7 @@ jobs:
     - name: Upload static files
       uses: actions/upload-pages-artifact@v3
       with:
-        path: .  # Publica todo desde la raíz (index.html, etc.)
+        path: .  # Publica todo desde la raíz (index.html, etc.)s
 
     - name: Deploy to GitHub Pages
       uses: actions/deploy-pages@v3
