@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Consultora TI - Soluciones Tecnológicas</title>
+  <style>
+    :root {
+      --primary: #004e89;
+      --secondary: #00a8e8;
+      --bg: #f4f4f4;
+      --text: #333;
+      --white: #fff;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: "Segoe UI", sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    header {
+      background: var(--primary);
+      color: var(--white);
+      padding: 1rem 2rem;
+    }
+
+    header h1 {
+      font-size: 1.8rem;
+    }
+
+    nav {
+      margin-top: 0.5rem;
+    }
+
+    nav a {
+      color: var(--white);
+      text-decoration: none;
+      margin-right: 1rem;
+    }
+
+    .hero {
+      background: linear-gradient(to right, var(--primary), var(--secondary));
+      color: var(--white);
+      padding: 4rem 2rem;
+      text-align: center;
+    }
+
+    .hero h2 {
+      font-size: 2rem;
+    }
+
+    .hero p {
+      margin-top: 1rem;
+      font-size: 1.1rem;
+    }
+
+    .btn {
+      display: inline-block;
+      margin-top: 1.5rem;
+      background: var(--white);
+      color: var(--primary);
+      padding: 0.75rem 1.5rem;
+      text-decoration: none;
+      border-radius: 5px;
+      font-weight: bold;
+    }
+
+    .section {
+      padding: 3rem 2rem;
+      max-width: 1000px;
+      margin: auto;
+    }
+
+    .section h3 {
+      font-size: 1.6rem;
+      margin-bottom: 1rem;
+      color: var(--primary);
+    }
+
+    .services {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 2rem;
+    }
+
+    .card {
+      background: var(--white);
+      padding: 1.5rem;
+      border-radius: 8px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    }
+
+    footer {
+      background: var(--primary);
+      color: var(--white);
+      text-align: center;
+      padding: 1rem;
+      margin-top: 2rem;
+    }
+
+    @media (max-width: 600px) {
+      header h1, .hero h2 {
+        font-size: 1.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Consultora TI Soluciones</h1>
+    <nav>
+      <a href="#servicios">Servicios</a>
+      <a href="#contacto">Contacto</a>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <h2>Impulsamos tu transformación digital</h2>
+    <p>Soluciones tecnológicas personalizadas para empresas modernas.</p>
+    <a class="btn" href="#contacto">Contáctanos</a>
+  </section>
+
+  <section class="section" id="servicios">
+    <h3>Nuestros Servicios</h3>
+    <div class="services">
+      <div class="card">
+        <h4>Consultoría Cloud</h4>
+        <p>Migración, optimización y gestión de infraestructuras en la nube.</p>
+      </div>
+      <div class="card">
+        <h4>Desarrollo Web</h4>
+        <p>Aplicaciones robustas y escalables, adaptadas a tu negocio.</p>
+      </div>
+      <div class="card">
+        <h4>Seguridad Informática</h4>
+        <p>Auditorías, protección de datos y ciberseguridad proactiva.</p>
+      </div>
+      <div class="card">
+        <h4>Automatización de Procesos</h4>
+        <p>RPA e integraciones para mejorar la eficiencia empresarial.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="contacto">
+    <h3>Contáctanos</h3>
+    <form onsubmit="enviarFormulario(event)">
+      <label>Nombre:<br><input type="text" id="nombre" required></label><br><br>
+      <label>Email:<br><input type="email" id="email" required></label><br><br>
+      <label>Mensaje:<br><textarea id="mensaje" rows="5" required></textarea></label><br><br>
+      <button class="btn" type="submit">Enviar</button>
+    </form>
+    <p id="respuesta" style="margin-top:1rem; color:green;"></p>
+  </section>
+
+  <footer>
+    &copy; 2025 Consultora TI Soluciones. Todos los derechos reservados.
+  </footer>
+
+  <script>
+    function enviarFormulario(event) {
+      event.preventDefault();
+      const nombre = document.getElementById('nombre').value;
+      const email = document.getElementById('email').value;
+      const mensaje = document.getElementById('mensaje').value;
+
+      if(nombre && email && mensaje) {
+        document.getElementById('respuesta').textContent = "Gracias por tu mensaje, " + nombre + ". Nos contactaremos pronto.";
+        event.target.reset();
+      } else {
+        document.getElementById('respuesta').style.color = "red";
+        document.getElementById('respuesta').textContent = "Por favor completa todos los campos.";
+      }
+    }
+  </script>
+
+</body>
+</html>
