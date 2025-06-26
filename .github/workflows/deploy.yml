@@ -1,26 +1,38 @@
-name: Deploy static site to GitHub Pages
+name: Deploy static content to Pages
 
 on:
   push:
-    branches: [main]
+    branches: ["main"]
+  workflow_dispatch:
 
 permissions:
   contents: read
   pages: write
   id-token: write
 
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+
 jobs:
   deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout repo
-      uses: actions/checkout@v4
+      - name: Checkout
+        uses: actions/checkout@v4
 
-    - name: Upload static files
-      uses: actions/upload-pages-artifact@v3
-      with:
-        path: .  # Publica todo desde la raíz (index.html, etc.)s
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
 
-    - name: Deploy to GitHub Pages
-      uses: actions/deploy-pages@v3
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: '.'  # ✅ tu caso: subir todo desde la raíz del repo
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
